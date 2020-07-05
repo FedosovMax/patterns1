@@ -1,21 +1,21 @@
 package com.factory.abstractfactory;
 
-import com.factory.abstractfactory.buttons.Button;
-import com.factory.abstractfactory.checkboxes.Checkbox;
-import com.factory.abstractfactory.factories.GuiFactory;
+import com.factory.abstractfactory.doors.Doors;
+import com.factory.abstractfactory.wheels.Wheels;
+import com.factory.abstractfactory.factories.CarFactory;
 
 public class Application {
 
-    private final Button button;
-    private final Checkbox checkbox;
+    private final Doors doors;
+    private final Wheels wheels;
 
-    public Application(GuiFactory factory) {
-        button = factory.createButton();
-        checkbox = factory.createCheckbox();
+    public Application(CarFactory factory) {
+        doors = factory.createDoors();
+        wheels = factory.createWheels();
     }
 
     public void draw() {
-        button.print();
-        checkbox.print();
+        doors.create();
+        wheels.create();
     }
 }

@@ -1,27 +1,33 @@
 package com.factory.abstractfactory;
 
-import com.factory.abstractfactory.factories.GuiFactory;
-import com.factory.abstractfactory.factories.MacOsFactory;
-import com.factory.abstractfactory.factories.WindowsFactory;
+import com.factory.abstractfactory.factories.CarFactory;
+import com.factory.abstractfactory.factories.HondaFactory;
+import com.factory.abstractfactory.factories.FordFactory;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Demo {
 
-    private static Application configureApplication() {
+    private static Application configureApplication() throws IOException {
         Application app;
-        GuiFactory factory;
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("mac")) {
-            factory = new MacOsFactory();
+        CarFactory factory;
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = br.readLine().toLowerCase();
+
+        if (input.contains("honda")) {
+            factory = new HondaFactory();
         } else {
-            factory = new WindowsFactory();
+            factory = new FordFactory();
         }
         app = new Application(factory);
         return app;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Application app = configureApplication();
         app.draw();
     }
-
 }
